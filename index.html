@@ -56,6 +56,39 @@
                     <div class="stat">👁️ 500K+ Visitas</div>
                     <div class="stat">⚙️ Motor de Físicas</div>
                     <a href="https://www.roblox.com/games/13985579672/" target="_blank" class="btn">View Game</a>
+
+                    <div class="container" style="margin-top: 60px;">
+    <h2 style="color: var(--primary); font-weight: 900; margin-bottom: 10px;">SCRIPTING SHOWCASE</h2>
+    <p style="color: #888; margin-bottom: 25px;">Implementación de sistemas escalables y optimización de memoria.</p>
+    
+    <div style="background: #0a0a0a; border: 1px solid #222; border-radius: 25px; padding: 25px; font-family: 'Courier New', monospace; position: relative; overflow: hidden;">
+        <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+            <div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"></div>
+            <div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"></div>
+            <div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"></div>
+        </div>
+        <pre style="margin: 0; line-height: 1.5; color: #d1d1d1; font-size: 14px;">
+<span style="color: #569cd6;">local</span> DataManager = {}
+DataManager.__index = DataManager
+
+<span style="color: #6a9955;">-- Constructor de sistema de datos</span>
+<span style="color: #569cd6;">function</span> DataManager.<span style="color: #dcdcaa;">new</span>(player)
+    <span style="color: #569cd6;">local</span> self = <span style="color: #dcdcaa;">setmetatable</span>({}, DataManager)
+    self.Player = player
+    self.Profile = <span style="color: #569cd6;">nil</span>
+    <span style="color: #569cd6;">return</span> self
+<span style="color: #569cd6;">end</span>
+
+<span style="color: #569cd6;">function</span> DataManager:<span style="color: #dcdcaa;">LoadData</span>()
+    <span style="color: #ce9178;">print</span>(<span style="color: #ce9178;">"Cargando perfil de: "</span> .. self.Player.Name)
+    <span style="color: #6a9955;">-- Lógica de ProfileService / DataStore</span>
+<span style="color: #569cd6;">end</span>
+
+<span style="color: #569cd6;">return</span> DataManager
+        </pre>
+    </div>
+</div>
+
                 </div>
             </div>
         </div>
