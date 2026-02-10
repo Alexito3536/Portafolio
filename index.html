@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVE_ONE | Lead Technical Architect</title>
+    <title>AVE_ONE | Arquitecto Técnico Senior</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: #0a0a0a; }
         
-        * { cursor: none !important; } /* Activamos el cursor personalizado */
+        * { cursor: none !important; }
 
         body { 
             margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; 
@@ -24,7 +24,7 @@
         }
         #cursor::after { content: ''; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; }
 
-        /* Fondo Dinámico con Grid */
+        /* Fondo de Cuadrícula Técnica */
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
@@ -33,43 +33,42 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        /* Glitch Effect para el Título */
+        /* Efecto Glitch para el nombre */
         .glitch {
-            font-size: 72px; font-weight: 900; color: white; position: relative;
-            text-transform: uppercase; letter-spacing: -4px;
+            font-size: clamp(40px, 8vw, 72px); font-weight: 900; color: white; position: relative;
+            text-transform: uppercase; letter-spacing: -4px; text-align: center;
         }
         .glitch:hover { color: var(--accent); text-shadow: 2px 0 red, -2px 0 blue; }
 
-        /* Barras de Skill Técnicas */
+        /* Barras de Habilidades */
         .skill-container { margin: 40px 0; background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #222; }
-        .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 15px 0 25px; overflow: hidden; }
+        .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 10px 0 20px; overflow: hidden; }
         .skill-per { height: 100%; background: var(--primary); width: 0; transition: 2s ease-in-out; position: relative; }
-        .skill-per::after { content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%; background: var(--accent); filter: blur(5px); }
 
-        /* Tarjetas Neomórficas */
+        /* Grid de Proyectos */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card { 
             background: var(--card); border-radius: 40px; overflow: hidden; border: 1px solid #1a1a1a; 
             transition: 0.4s; position: relative;
         }
-        .card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--accent); box-shadow: 0 0 50px rgba(0, 242, 255, 0.1); }
+        .card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--accent); }
         
-        .img-area { height: 250px; position: relative; filter: grayscale(50%); transition: 0.5s; }
+        .img-area { height: 250px; filter: grayscale(50%); transition: 0.5s; }
         .card:hover .img-area { filter: grayscale(0%); }
         .img-area img { width: 100%; height: 100%; object-fit: cover; }
 
-        .btn-deploy {
+        .btn-exe {
             background: transparent; border: 1px solid var(--primary); color: white;
             padding: 15px; border-radius: 15px; font-weight: 800; text-decoration: none;
             display: block; text-align: center; margin-top: 20px; transition: 0.3s;
         }
-        .btn-deploy:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
+        .btn-exe:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
 
-        /* Terminal Estilo 'Cyber' */
+        /* Terminal de Estado */
         .terminal {
-            background: #050505; border-left: 4px solid var(--primary);
-            padding: 30px; font-family: 'Space Grotesk', monospace; margin: 50px 0;
-            box-shadow: 20px 20px 60px #000;
+            background: #020202; border-left: 4px solid var(--primary);
+            padding: 25px; font-family: 'Space Grotesk', monospace; margin: 40px 0;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -79,66 +78,80 @@
     <div class="bg-grid"></div>
 
     <div class="container">
-        <header style="text-align: center; padding: 100px 0;">
-            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 12px;">ENCRYPTED_PORTFOLIO_V2</p>
+        <header style="padding: 80px 0; text-align: center;">
+            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 12px;">PORTAFOLIO_CIFRADO_V2</p>
             <h1 class="glitch">AVE_ONE</h1>
-            <p style="color: #666; font-size: 20px; max-width: 600px; margin: 0 auto;">
-                Technical Lead especializado en <span style="color: var(--accent);">Luau Virtual Machines</span> y optimización de flujos de datos a gran escala.
+            <p style="color: #666; font-size: 18px; max-width: 700px; margin: 20px auto;">
+                Desarrollador <span style="color: var(--accent);">Senior en Luau</span>. Especializado en optimización de back-end y sistemas de físicas para experiencias masivas.
             </p>
         </header>
 
-        <div style="display:flex; justify-content: space-around; margin-bottom: 80px; font-weight: 900; color: var(--primary);">
-            <div>[ 1.4M VISITS ]</div>
-            <div>[ 60 FPS OPTIMIZED ]</div>
-            <div>[ POO ARCHITECTURE ]</div>
-        </div>
-
         <div class="grid">
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg"></div>
+                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero"></div>
                 <div class="content" style="padding: 30px;">
-                    <h3 style="margin:0; font-size: 28px;">Roba un Reggaetonero</h3>
-                    <p style="color: #555;">Sistemas de micro-servicios y sincronización de estado global.</p>
-                    <a href="https://www.roblox.com/games/139814980148578/" class="btn-deploy">EXECUTE_SYSTEM</a>
+                    <h3 style="margin:0; font-size: 26px;">Roba un Reggaetonero</h3>
+                    <p style="color: #555;">Implementación de interpolación de red y predicción de cliente.</p>
+                    <a href="https://www.roblox.com/games/139814980148578/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004.jpg"></div>
+                <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Falling Guys"></div>
                 <div class="content" style="padding: 30px;">
-                    <h3 style="margin:0; font-size: 28px;">Falling Guys</h3>
-                    <p style="color: #555;">Implementación de interpolación de red y predicción de cliente.</p>
-                    <a href="https://www.roblox.com/games/13985579672/" class="btn-deploy">EXECUTE_SYSTEM</a>
+                    <h3 style="margin:0; font-size: 26px;">Falling Guys</h3>
+                    <p style="color: #555;">Arquitectura de micro-servicios y optimización de latencia en servidores.</p>
+                    <a href="https://www.roblox.com/games/13985579672/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
         </div>
 
         <div class="skill-container">
-            <h2 style="margin:0; letter-spacing: -1px;">CORE_CAPABILITIES</h2>
-            <p style="color: #444; font-size: 13px;">ANÁLISIS DE RENDIMIENTO EN TIEMPO REAL</p>
+            <h2 style="margin:0; letter-spacing: -1px; text-transform: uppercase;">Capacidades_Core</h2>
+            <p style="color: #444; font-size: 12px; margin-bottom: 25px;">ANÁLISIS TÉCNICO EN TIEMPO REAL</p>
             
-            <span>BACKEND OPTIMIZATION</span>
+            <span>OPTIMIZACIÓN DE BACKEND</span>
             <div class="skill-bar"><div class="skill-per" style="width: 98%;"></div></div>
             
-            <span>LUAU SCRIPTING</span>
+            <span>PROGRAMACIÓN EN LUAU</span>
             <div class="skill-bar"><div class="skill-per" style="width: 95%;"></div></div>
+            
+            <span>ARQUITECTURA DE DATOS</span>
+            <div class="skill-bar"><div class="skill-per" style="width: 92%;"></div></div>
         </div>
 
         <div class="terminal">
-            <code style="color: #00ff00;">> INITIALIZING CORE_ENGINE...</code><br>
-            <code style="color: #555;">> Memory status: 0.002ms latency</code><br>
-            <code style="color: var(--accent);">> Status: Ready for High-End Commission.</code>
+            <code style="color: #00ff00;">> INICIALIZANDO NÚCLEO...</code><br>
+            <code style="color: #555;">> Latencia de memoria: 0.002ms</code><br>
+            <code style="color: var(--accent);">> Estado: Listo para encargos de alta complejidad.</code>
         </div>
 
-        <footer style="text-align: center; padding: 100px 0; color: #222; font-weight: 900; font-size: 10px;">
-            STRICTLY CONFIDENTIAL // AVE_ONE &copy; 2026
+        <footer style="text-align: center; padding: 60px 0; color: #222; font-weight: 900; font-size: 10px; letter-spacing: 2px;">
+            ESTRICTAMENTE CONFIDENCIAL // AVE_ONE &copy; 2026
         </footer>
     </div>
 
     <script>
-        // Lógica del Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Animación automática de las barras de habilidad
+        const skills = document.querySelectorAll('.skill-per');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('style').split('width: ')[1];
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skills.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
