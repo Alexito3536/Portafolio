@@ -8,51 +8,35 @@
     <style>
         :root { --primary: #2b65d9; --bg: #050505; --card-bg: #0f0f0f; }
         body { margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; }
-        
         .hero { padding: 60px 20px; text-align: center; }
         .hero h1 { font-size: 40px; font-weight: 900; color: var(--primary); margin: 0; text-transform: uppercase; }
         .hero p { color: #888; max-width: 600px; margin: 15px auto; font-weight: 500; }
-
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-
-        /* Estilo idéntico a tu referencia */
         .card { background: var(--card-bg); border-radius: 35px; overflow: hidden; border: 1px solid #222; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        
         .img-area { width: 100%; height: 220px; position: relative; background: #1a1a1a; }
         .img-area img { width: 100%; height: 100%; object-fit: cover; }
-        
         .badge { position: absolute; top: 20px; right: 20px; background: var(--primary); padding: 6px 15px; border-radius: 20px; font-size: 12px; font-weight: 900; box-shadow: 0 4px 15px rgba(43, 101, 217, 0.4); }
-        
         .content { padding: 25px; }
         .content h2 { font-size: 24px; font-weight: 900; margin: 0 0 15px 0; }
-        
         .stat { display: flex; align-items: center; gap: 10px; color: #999; margin-bottom: 8px; font-weight: 600; font-size: 15px; }
-
-        .btn { 
-            display: block; width: 100%; padding: 16px; background: var(--primary); color: white; 
-            text-align: center; text-decoration: none; border-radius: 20px; font-weight: 800; 
-            margin-top: 20px; transition: 0.3s; font-size: 16px;
-        }
+        .btn { display: block; width: 100%; padding: 16px; background: var(--primary); color: white; text-align: center; text-decoration: none; border-radius: 20px; font-weight: 800; margin-top: 20px; transition: 0.3s; font-size: 16px; }
         .btn:hover { background: #3d7eff; box-shadow: 0 10px 20px rgba(43, 101, 217, 0.3); }
     </style>
 </head>
 <body>
-
     <header class="hero">
         <p style="color: var(--primary); font-weight: 800; font-size: 12px; letter-spacing: 2px;">LUAU SOFTWARE ENGINEER</p>
         <h1>AVE_ONE PORTFOLIO</h1>
-        <p>Especialista en ingeniería de software para Roblox con más de 3.5 años de experiencia. Desarrollo de sistemas robustos mediante POO.</p>
+        <p>Especialista en ingeniería de software para Roblox con más de 3.5 años de experiencia.</p>
     </header>
 
     <div class="container">
         <div class="grid">
-            
             <div class="card">
                 <div class="img-area">
                     <div class="badge">1k CCU PEAK</div>
-                    <img src="1000108819.jpg" alt="Roba un Reggaetonero">
+                    <img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero">
                 </div>
                 <div class="content">
                     <h2>Roba un Reggaetonero</h2>
@@ -65,7 +49,7 @@
             <div class="card">
                 <div class="img-area">
                     <div class="badge">800 CCU PEAK</div>
-                    <img src="1000108818.jpg" alt="Falling Guys">
+                    <img src="IMG-20260209-WA0004.jpg" alt="Falling Guys">
                 </div>
                 <div class="content">
                     <h2>Falling Guys</h2>
@@ -74,9 +58,7 @@
                     <a href="https://www.roblox.com/games/13985579672/" target="_blank" class="btn">View Game</a>
                 </div>
             </div>
-
         </div>
     </div>
-
 </body>
 </html>
