@@ -8,53 +8,39 @@
     <style>
         :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: #0a0a0a; }
         
-        * { cursor: none !important; }
-
         body { 
             margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; 
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Cursor de Precisión */
-        #cursor {
-            position: fixed; width: 20px; height: 20px; border: 1px solid var(--accent);
-            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
-            z-index: 9999; transition: width 0.2s, height 0.2s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #cursor::after { content: ''; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; }
-
-        /* Fondo de Cuadrícula Técnica */
+        /* Fondo de Cuadrícula */
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; opacity: 0.3;
+            background-size: 50px 50px; z-index: -1; opacity: 0.2;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        /* Efecto Glitch para el nombre */
         .glitch {
-            font-size: clamp(40px, 8vw, 72px); font-weight: 900; color: white; position: relative;
-            text-transform: uppercase; letter-spacing: -4px; text-align: center;
+            font-size: clamp(40px, 8vw, 72px); font-weight: 900; color: white;
+            text-transform: uppercase; letter-spacing: -4px; text-align: center; margin-bottom: 10px;
         }
-        .glitch:hover { color: var(--accent); text-shadow: 2px 0 red, -2px 0 blue; }
 
         /* Barras de Habilidades */
         .skill-container { margin: 40px 0; background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #222; }
         .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 10px 0 20px; overflow: hidden; }
-        .skill-per { height: 100%; background: var(--primary); width: 0; transition: 2s ease-in-out; position: relative; }
+        .skill-per { height: 100%; background: var(--primary); width: 0; transition: 1.5s ease-in-out; }
 
         /* Grid de Proyectos */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card { 
             background: var(--card); border-radius: 40px; overflow: hidden; border: 1px solid #1a1a1a; 
-            transition: 0.4s; position: relative;
+            transition: 0.4s;
         }
-        .card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--accent); }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         
-        .img-area { height: 250px; filter: grayscale(50%); transition: 0.5s; }
-        .card:hover .img-area { filter: grayscale(0%); }
+        .img-area { height: 250px; overflow: hidden; }
         .img-area img { width: 100%; height: 100%; object-fit: cover; }
 
         .btn-exe {
@@ -62,9 +48,8 @@
             padding: 15px; border-radius: 15px; font-weight: 800; text-decoration: none;
             display: block; text-align: center; margin-top: 20px; transition: 0.3s;
         }
-        .btn-exe:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
+        .btn-exe:hover { background: var(--primary); }
 
-        /* Terminal de Estado */
         .terminal {
             background: #020202; border-left: 4px solid var(--primary);
             padding: 25px; font-family: 'Space Grotesk', monospace; margin: 40px 0;
@@ -74,15 +59,14 @@
 </head>
 <body>
 
-    <div id="cursor"></div>
     <div class="bg-grid"></div>
 
     <div class="container">
-        <header style="padding: 80px 0; text-align: center;">
-            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 12px;">PORTAFOLIO_CIFRADO_V2</p>
+        <header style="padding: 60px 0; text-align: center;">
+            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 11px;">SISTEMA_PORTAFOLIO_V2</p>
             <h1 class="glitch">AVE_ONE</h1>
-            <p style="color: #666; font-size: 18px; max-width: 700px; margin: 20px auto;">
-                Desarrollador <span style="color: var(--accent);">Senior en Luau</span>. Especializado en optimización de back-end y sistemas de físicas para experiencias masivas.
+            <p style="color: #888; font-size: 18px; max-width: 700px; margin: 20px auto;">
+                Desarrollador <span style="color: var(--accent);">Senior en Luau</span>. Especializado en optimización de back-end y sistemas masivos en Roblox.
             </p>
         </header>
 
@@ -91,7 +75,7 @@
                 <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero"></div>
                 <div class="content" style="padding: 30px;">
                     <h3 style="margin:0; font-size: 26px;">Roba un Reggaetonero</h3>
-                    <p style="color: #555;">Implementación de interpolación de red y predicción de cliente.</p>
+                    <p style="color: #666;">Interpolación de red y predicción de cliente avanzada.</p>
                     <a href="https://www.roblox.com/games/139814980148578/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
@@ -100,70 +84,50 @@
                 <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Falling Guys"></div>
                 <div class="content" style="padding: 30px;">
                     <h3 style="margin:0; font-size: 26px;">Falling Guys</h3>
-                    <p style="color: #555;">Arquitectura de micro-servicios y optimización de latencia en servidores.</p>
+                    <p style="color: #666;">Arquitectura de servicios y optimización de latencia.</p>
                     <a href="https://www.roblox.com/games/13985579672/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
         </div>
 
         <div class="skill-container">
-            <h2 style="margin:0; letter-spacing: -1px; text-transform: uppercase;">Capacidades_Core</h2>
-            <p style="color: #444; font-size: 12px; margin-bottom: 25px;">ANÁLISIS TÉCNICO EN TIEMPO REAL</p>
+            <h2 style="margin:0; text-transform: uppercase;">Capacidades_Técnicas</h2>
+            <p style="color: #444; font-size: 12px; margin-bottom: 25px;">MÉTRICAS DE RENDIMIENTO REAL</p>
             
             <span>OPTIMIZACIÓN DE BACKEND</span>
-            <div class="skill-bar"><div class="skill-per" style="width: 98%;"></div></div>
+            <div class="skill-bar"><div class="skill-per" data-width="98%"></div></div>
             
             <span>PROGRAMACIÓN EN LUAU</span>
-            <div class="skill-bar"><div class="skill-per" style="width: 95%;"></div></div>
+            <div class="skill-bar"><div class="skill-per" data-width="95%"></div></div>
             
             <span>ARQUITECTURA DE DATOS</span>
-            <div class="skill-bar"><div class="skill-per" style="width: 92%;"></div></div>
+            <div class="skill-bar"><div class="skill-per" data-width="92%"></div></div>
         </div>
 
         <div class="terminal">
-            <code style="color: #00ff00;">> INICIALIZANDO NÚCLEO...</code><br>
-            <code style="color: #555;">> Latencia de memoria: 0.002ms</code><br>
-            <code style="color: var(--accent);">> Estado: Listo para encargos de alta complejidad.</code>
+            <code style="color: #00ff00;">> NÚCLEO INICIALIZADO...</code><br>
+            <code style="color: #555;">> Estado de memoria: Estable</code><br>
+            <code style="color: var(--accent);">> Listo para proyectos de alta complejidad.</code>
         </div>
 
-        <footer style="text-align: center; padding: 60px 0; color: #222; font-weight: 900; font-size: 10px; letter-spacing: 2px;">
-            ESTRICTAMENTE CONFIDENCIAL // AVE_ONE &copy; 2026
+        <footer style="text-align: center; padding: 40px 0; color: #222; font-weight: 900; font-size: 10px; letter-spacing: 2px;">
+            STRICTLY CONFIDENTIAL // AVE_ONE &copy; 2026
         </footer>
     </div>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Animación automática de las barras de habilidad
+        // Animación de las barras al hacer scroll
         const skills = document.querySelectorAll('.skill-per');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
-                    entry.target.style.width = entry.target.getAttribute('style').split('width: ')[1];
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width;
                 }
             });
         }, { threshold: 0.5 });
 
         skills.forEach(s => observer.observe(s));
-    </script>
-</body>
-</html>
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Animación de las barras al hacer scroll
-        const skills = document.querySelectorAll('.skill-per');
-        window.addEventListener('scroll', () => {
-            skills.forEach(skill => {
-                const pos = skill.getBoundingClientRect().top;
-                if(pos < window.innerHeight) skill.style.width = skill.getAttribute('style').split('width: ')[1];
-            });
-        });
     </script>
 </body>
 </html>
