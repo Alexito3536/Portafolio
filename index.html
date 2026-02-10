@@ -3,124 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVE_ONE | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>AVE_ONE | Lead Technical Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2b65d9; --bg: #050505; --card-bg: #0f0f0f; }
+        :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: #0a0a0a; }
         
+        * { cursor: none !important; } /* Activamos el cursor personalizado */
+
         body { 
             margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; 
-            line-height: 1.6; overflow-x: hidden; position: relative;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Efecto de Partículas en el Fondo */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
-            z-index: -2;
+        /* Cursor de Precisión */
+        #cursor {
+            position: fixed; width: 20px; height: 20px; border: 1px solid var(--accent);
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
+            z-index: 9999; transition: width 0.2s, height 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #cursor::after { content: ''; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; }
+
+        /* Fondo Dinámico con Grid */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1; opacity: 0.3;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; position: relative; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        /* Header con Animación */
-        .hero { padding: 120px 20px 60px; text-align: center; animation: fadeInUp 1s ease; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* Glitch Effect para el Título */
+        .glitch {
+            font-size: 72px; font-weight: 900; color: white; position: relative;
+            text-transform: uppercase; letter-spacing: -4px;
+        }
+        .glitch:hover { color: var(--accent); text-shadow: 2px 0 red, -2px 0 blue; }
 
-        .hero h1 { font-size: 56px; font-weight: 900; color: var(--primary); margin: 0; letter-spacing: -3px; text-shadow: 0 0 30px rgba(43, 101, 217, 0.3); }
+        /* Barras de Skill Técnicas */
+        .skill-container { margin: 40px 0; background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #222; }
+        .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 15px 0 25px; overflow: hidden; }
+        .skill-per { height: 100%; background: var(--primary); width: 0; transition: 2s ease-in-out; position: relative; }
+        .skill-per::after { content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%; background: var(--accent); filter: blur(5px); }
 
-        /* Tarjetas con Efecto de Brillo */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
+        /* Tarjetas Neomórficas */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card { 
-            background: var(--card-bg); border-radius: 35px; overflow: hidden; border: 1px solid #222; 
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+            background: var(--card); border-radius: 40px; overflow: hidden; border: 1px solid #1a1a1a; 
+            transition: 0.4s; position: relative;
         }
-        .card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--primary); box-shadow: 0 0 40px rgba(43, 101, 217, 0.2); }
+        .card:hover { transform: scale(1.02) translateY(-10px); border-color: var(--accent); box-shadow: 0 0 50px rgba(0, 242, 255, 0.1); }
         
-        .img-area { width: 100%; height: 240px; overflow: hidden; }
-        .img-area img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .card:hover .img-area img { transform: scale(1.1) rotate(2deg); }
+        .img-area { height: 250px; position: relative; filter: grayscale(50%); transition: 0.5s; }
+        .card:hover .img-area { filter: grayscale(0%); }
+        .img-area img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Terminal de Código "Neon" */
-        .code-section { 
-            background: #080808; border: 1px solid #222; border-radius: 30px; padding: 35px; 
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5); position: relative;
+        .btn-deploy {
+            background: transparent; border: 1px solid var(--primary); color: white;
+            padding: 15px; border-radius: 15px; font-weight: 800; text-decoration: none;
+            display: block; text-align: center; margin-top: 20px; transition: 0.3s;
         }
-        .code-section::before {
-            content: "LUAU EXECUTOR"; position: absolute; top: 10px; right: 20px; 
-            font-size: 10px; color: #444; font-weight: 900;
-        }
+        .btn-deploy:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
 
-        /* Botones con Gradiente */
-        .btn { 
-            display: block; width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary), #1a4ab3); 
-            color: white; text-align: center; text-decoration: none; border-radius: 22px; font-weight: 800; 
-            transition: 0.3s; margin-top: 15px; border: none; cursor: pointer;
+        /* Terminal Estilo 'Cyber' */
+        .terminal {
+            background: #050505; border-left: 4px solid var(--primary);
+            padding: 30px; font-family: 'Space Grotesk', monospace; margin: 50px 0;
+            box-shadow: 20px 20px 60px #000;
         }
-        .btn:hover { transform: scale(1.03); filter: brightness(1.2); box-shadow: 0 10px 20px rgba(43, 101, 217, 0.4); }
-
-        /* Texto que brilla */
-        .highlight { color: var(--primary); font-weight: 700; }
     </style>
 </head>
 <body>
 
+    <div id="cursor"></div>
+    <div class="bg-grid"></div>
+
     <div class="container">
-        <header class="hero">
-            <p style="color: var(--primary); font-weight: 800; font-size: 13px; letter-spacing: 5px; text-transform: uppercase;">System Architect</p>
-            <h1>AVE_ONE</h1>
-            <p class="intro-text" style="color: #888; max-width: 700px; margin: 20px auto; font-size: 18px;">
-                Desarrollador <span class="highlight">Senior en Luau</span>. Especializado en optimización de back-end y sistemas de físicas para experiencias masivas en Roblox.
+        <header style="text-align: center; padding: 100px 0;">
+            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 12px;">ENCRYPTED_PORTFOLIO_V2</p>
+            <h1 class="glitch">AVE_ONE</h1>
+            <p style="color: #666; font-size: 20px; max-width: 600px; margin: 0 auto;">
+                Technical Lead especializado en <span style="color: var(--accent);">Luau Virtual Machines</span> y optimización de flujos de datos a gran escala.
             </p>
         </header>
 
+        <div style="display:flex; justify-content: space-around; margin-bottom: 80px; font-weight: 900; color: var(--primary);">
+            <div>[ 1.4M VISITS ]</div>
+            <div>[ 60 FPS OPTIMIZED ]</div>
+            <div>[ POO ARCHITECTURE ]</div>
+        </div>
+
         <div class="grid">
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero"></div>
-                <div class="content" style="padding: 25px;">
-                    <h2 style="margin: 0; font-size: 24px;">Roba un Reggaetonero</h2>
-                    <p style="color: #666; font-size: 14px; margin: 10px 0;">Desarrollo integral de sistemas de DataStore y economía persistente.</p>
-                    <a href="https://www.roblox.com/games/139814980148578/" class="btn">Deploy System</a>
+                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg"></div>
+                <div class="content" style="padding: 30px;">
+                    <h3 style="margin:0; font-size: 28px;">Roba un Reggaetonero</h3>
+                    <p style="color: #555;">Sistemas de micro-servicios y sincronización de estado global.</p>
+                    <a href="https://www.roblox.com/games/139814980148578/" class="btn-deploy">EXECUTE_SYSTEM</a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Falling Guys"></div>
-                <div class="content" style="padding: 25px;">
-                    <h2 style="margin: 0; font-size: 24px;">Falling Guys</h2>
-                    <p style="color: #666; font-size: 14px; margin: 10px 0;">Algoritmos de predicción de movimiento para reducir latencia en servidores.</p>
-                    <a href="https://www.roblox.com/games/13985579672/" class="btn">Deploy System</a>
+                <div class="img-area"><img src="IMG-20260209-WA0004.jpg"></div>
+                <div class="content" style="padding: 30px;">
+                    <h3 style="margin:0; font-size: 28px;">Falling Guys</h3>
+                    <p style="color: #555;">Implementación de interpolación de red y predicción de cliente.</p>
+                    <a href="https://www.roblox.com/games/13985579672/" class="btn-deploy">EXECUTE_SYSTEM</a>
                 </div>
             </div>
         </div>
 
-        <h2 style="color: var(--primary); font-weight: 900; margin-top: 60px;">CORE ENGINE</h2>
-        <div class="code-section">
-            <pre style="margin: 0; color: #d1d1d1; font-size: 14px; font-family: 'Courier New', monospace;">
-<span style="color: #569cd6;">local</span> AveOne_Kernel = {}
-
-<span style="color: #6a9955;">--[[ 
-   Optimización de memoria para sistemas 
-   con más de 1k usuarios simultáneos.
-]]</span>
-<span style="color: #569cd6;">function</span> AveOne_Kernel:<span style="color: #dcdcaa;">Boot</span>()
-    <span style="color: #ce9178;">print</span>(<span style="color: #ce9178;">"System integrity: OK"</span>)
-    <span style="color: #ce9178;">print</span>(<span style="color: #ce9178;">"Network optimization: ENABLED"</span>)
-<span style="color: #569cd6;">end</span>
-
-<span style="color: #569cd6;">return</span> AveOne_Kernel</pre>
+        <div class="skill-container">
+            <h2 style="margin:0; letter-spacing: -1px;">CORE_CAPABILITIES</h2>
+            <p style="color: #444; font-size: 13px;">ANÁLISIS DE RENDIMIENTO EN TIEMPO REAL</p>
+            
+            <span>BACKEND OPTIMIZATION</span>
+            <div class="skill-bar"><div class="skill-per" style="width: 98%;"></div></div>
+            
+            <span>LUAU SCRIPTING</span>
+            <div class="skill-bar"><div class="skill-per" style="width: 95%;"></div></div>
         </div>
 
-        <div style="margin: 80px 0; padding: 60px; background: linear-gradient(145deg, #0d0d0d, #050505); border-radius: 40px; border: 1px solid #222; text-align: center;">
-            <h2 style="font-size: 32px; margin-bottom: 10px;">Engineering Inquiry</h2>
-            <p style="color: #666; margin-bottom: 30px;">Disponible para integraciones técnicas de alta complejidad.</p>
-            <div style="display: inline-block; background: #1a1a1a; padding: 15px 40px; border-radius: 20px; border: 1px solid var(--primary); font-weight: 900; color: var(--primary);">
-                DISCORD: roblox_scripter
-            </div>
+        <div class="terminal">
+            <code style="color: #00ff00;">> INITIALIZING CORE_ENGINE...</code><br>
+            <code style="color: #555;">> Memory status: 0.002ms latency</code><br>
+            <code style="color: var(--accent);">> Status: Ready for High-End Commission.</code>
         </div>
+
+        <footer style="text-align: center; padding: 100px 0; color: #222; font-weight: 900; font-size: 10px;">
+            STRICTLY CONFIDENTIAL // AVE_ONE &copy; 2026
+        </footer>
     </div>
 
-    <footer style="padding: 50px; text-align: center; color: #333; font-size: 11px; font-weight: 800; letter-spacing: 2px;">
-        &copy; 2026 // AVE_ONE // ENCRYPTED CONNECTION
-    </footer>
+    <script>
+        // Lógica del Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Animación de las barras al hacer scroll
+        const skills = document.querySelectorAll('.skill-per');
+        window.addEventListener('scroll', () => {
+            skills.forEach(skill => {
+                const pos = skill.getBoundingClientRect().top;
+                if(pos < window.innerHeight) skill.style.width = skill.getAttribute('style').split('width: ')[1];
+            });
+        });
+    </script>
 </body>
 </html>
