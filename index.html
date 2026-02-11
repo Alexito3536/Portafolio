@@ -6,40 +6,40 @@
     <title>AVE_ONE | Arquitecto Técnico Senior</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: #0a0a0a; }
+        :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: rgba(10, 10, 10, 0.9); }
         
         body { 
             margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; 
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Fondo de Cuadrícula */
-        .bg-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; opacity: 0.2;
+        /* Contenedor del Video de Fondo */
+        .video-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;
+            background: #000;
         }
+        #youtube-player {
+            position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh;
+            transform: translate(-50%, -50%); min-width: 100%; min-height: 100%;
+            pointer-events: none; opacity: 0.4; /* Ajusta la opacidad para que el texto se lea bien */
+        }
+        @media (min-aspect-ratio: 16/9) { #youtube-player { height: 300%; top: -100%; } }
+        @media (max-aspect-ratio: 16/9) { #youtube-player { width: 300%; left: -100%; } }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
 
         .glitch {
             font-size: clamp(40px, 8vw, 72px); font-weight: 900; color: white;
             text-transform: uppercase; letter-spacing: -4px; text-align: center; margin-bottom: 10px;
         }
 
-        /* Barras de Habilidades */
-        .skill-container { margin: 40px 0; background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #222; }
-        .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 10px 0 20px; overflow: hidden; }
-        .skill-per { height: 100%; background: var(--primary); width: 0; transition: 1.5s ease-in-out; }
-
-        /* Grid de Proyectos */
+        /* Tarjetas de Proyectos */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card { 
             background: var(--card); border-radius: 40px; overflow: hidden; border: 1px solid #1a1a1a; 
-            transition: 0.4s;
+            transition: 0.4s; backdrop-filter: blur(10px);
         }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        
         .img-area { height: 250px; overflow: hidden; }
         .img-area img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -48,51 +48,60 @@
             padding: 15px; border-radius: 15px; font-weight: 800; text-decoration: none;
             display: block; text-align: center; margin-top: 20px; transition: 0.3s;
         }
-        .btn-exe:hover { background: var(--primary); }
+        .btn-exe:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
+
+        /* Habilidades */
+        .skill-container { margin: 40px 0; background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #222; }
+        .skill-bar { height: 10px; background: #1a1a1a; border-radius: 5px; margin: 10px 0 20px; overflow: hidden; }
+        .skill-per { height: 100%; background: var(--primary); width: 0; transition: 2s ease-in-out; }
 
         .terminal {
             background: #020202; border-left: 4px solid var(--primary);
-            padding: 25px; font-family: 'Space Grotesk', monospace; margin: 40px 0;
-            font-size: 14px;
+            padding: 25px; font-family: 'Space Grotesk', monospace; margin: 40px 0; font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
+    <div class="video-background">
+        <iframe id="youtube-player"
+            src="https://www.youtube.com/embed/74rohQ60hbk?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&playlist=74rohQ60hbk"
+            frameborder="0" allow="autoplay; encrypted-media">
+        </iframe>
+    </div>
 
     <div class="container">
         <header style="padding: 60px 0; text-align: center;">
-            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 11px;">SISTEMA_PORTAFOLIO_V2</p>
+            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 11px;">PORTAFOLIO_CIFRADO_V3</p>
             <h1 class="glitch">AVE_ONE</h1>
-            <p style="color: #888; font-size: 18px; max-width: 700px; margin: 20px auto;">
-                Desarrollador <span style="color: var(--accent);">Senior en Luau</span>. Especializado en optimización de back-end y sistemas masivos en Roblox.
+            <p style="color: #aaa; font-size: 18px; max-width: 700px; margin: 20px auto;">
+                Desarrollador <span style="color: var(--accent);">Senior en Luau</span>. Especializado en sistemas de físicas y optimización de back-end masivo.
             </p>
         </header>
 
         <div class="grid">
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero"></div>
+                <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Proyecto 1"></div>
                 <div class="content" style="padding: 30px;">
                     <h3 style="margin:0; font-size: 26px;">Roba un Reggaetonero</h3>
-                    <p style="color: #666;">Interpolación de red y predicción de cliente avanzada.</p>
+                    <p style="color: #888;">Implementación de interpolación de red y predicción de cliente avanzada.</p>
                     <a href="https://www.roblox.com/games/139814980148578/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Falling Guys"></div>
+                <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Proyecto 2"></div>
                 <div class="content" style="padding: 30px;">
                     <h3 style="margin:0; font-size: 26px;">Falling Guys</h3>
-                    <p style="color: #666;">Arquitectura de servicios y optimización de latencia.</p>
+                    <p style="color: #888;">Arquitectura de micro-servicios y optimización de latencia en servidores.</p>
                     <a href="https://www.roblox.com/games/13985579672/" class="btn-exe">EJECUTAR_SISTEMA</a>
                 </div>
             </div>
         </div>
 
         <div class="skill-container">
-            <h2 style="margin:0; text-transform: uppercase;">Capacidades_Técnicas</h2>
-            <p style="color: #444; font-size: 12px; margin-bottom: 25px;">MÉTRICAS DE RENDIMIENTO REAL</p>
+            <h2 style="margin:0; text-transform: uppercase;">Capacidades_Core</h2>
+            <p style="color: #444; font-size: 12px; margin-bottom: 25px;">ANÁLISIS TÉCNICO EN TIEMPO REAL</p>
             
             <span>OPTIMIZACIÓN DE BACKEND</span>
             <div class="skill-bar"><div class="skill-per" data-width="98%"></div></div>
@@ -105,28 +114,26 @@
         </div>
 
         <div class="terminal">
-            <code style="color: #00ff00;">> NÚCLEO INICIALIZADO...</code><br>
-            <code style="color: #555;">> Estado de memoria: Estable</code><br>
-            <code style="color: var(--accent);">> Listo para proyectos de alta complejidad.</code>
+            <code style="color: #00ff00;">> INICIALIZANDO NÚCLEO...</code><br>
+            <code style="color: #555;">> Latencia de memoria: 0.002ms</code><br>
+            <code style="color: var(--accent);">> Estado: Listo para encargos de alta complejidad.</code>
         </div>
 
-        <footer style="text-align: center; padding: 40px 0; color: #222; font-weight: 900; font-size: 10px; letter-spacing: 2px;">
-            STRICTLY CONFIDENTIAL // AVE_ONE &copy; 2026
+        <footer style="text-align: center; padding: 40px 0; color: #333; font-weight: 900; font-size: 10px; letter-spacing: 2px;">
+            ESTRICTAMENTE CONFIDENCIAL // AVE_ONE &copy; 2026
         </footer>
     </div>
 
     <script>
-        // Animación de las barras al hacer scroll
+        // Animación de barras de habilidad
         const skills = document.querySelectorAll('.skill-per');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
-                    const width = entry.target.getAttribute('data-width');
-                    entry.target.style.width = width;
+                    entry.target.style.width = entry.target.getAttribute('data-width');
                 }
             });
         }, { threshold: 0.5 });
-
         skills.forEach(s => observer.observe(s));
     </script>
 </body>
