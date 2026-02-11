@@ -3,175 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVE_ONE | Technical Architect</title>
+    <title>AVE_ONE | Lead Technical Architect</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: rgba(15, 15, 15, 0.85); }
+        :root { --primary: #2b65d9; --accent: #00f2ff; --bg: #050505; --card: rgba(12, 12, 12, 0.9); }
         
-        body { 
-            margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; 
-            overflow-x: hidden; scroll-behavior: smooth;
-        }
+        body { margin: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* FONDO Y PROFUNDIDAD */
-        .video-background {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
-            overflow: hidden; background: black;
-        }
-        #youtube-player {
-            position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh;
-            transform: translate(-50%, -50%); pointer-events: none; opacity: 0.6;
-        }
+        /* VIDEO DE FONDO Y PROFUNDIDAD */
+        .video-background { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; background: black; }
+        #youtube-player { position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh; transform: translate(-50%, -50%); pointer-events: none; opacity: 0.5; }
         @media (max-aspect-ratio: 16/9) { #youtube-player { width: 300vh; } }
         @media (min-aspect-ratio: 16/9) { #youtube-player { height: 300vw; } }
 
-        .overlay-profundidad {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            pointer-events: none;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.95) 100%);
-        }
+        .overlay-profundidad { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.95) 100%); }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+        /* LOGO DEL CLIENTE */
+        .client-logo { position: absolute; top: 25px; left: 25px; width: 70px; height: 70px; border-radius: 15px; border: 1px solid var(--primary); filter: drop-shadow(0 0 15px var(--primary)); object-fit: cover; }
 
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; z-index: 1; }
 
-        .glitch {
-            font-size: clamp(40px, 8vw, 72px); font-weight: 900; color: white;
-            text-transform: uppercase; letter-spacing: -4px; text-align: center;
-        }
+        @keyframes floating { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
 
-        /* GRID CONFIGURADO */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 30px; 
-            margin-top: 50px; 
-            justify-items: center;
-        }
+        .glitch { font-size: clamp(40px, 8vw, 75px); font-weight: 900; text-transform: uppercase; letter-spacing: -3px; text-align: center; margin: 0; }
+
+        /* SECCIÓN ABOUT ME */
+        .about-card { background: var(--card); border: 1px solid #1a1a1a; padding: 40px; border-radius: 35px; backdrop-filter: blur(20px); margin: 50px 0; border-left: 5px solid var(--primary); }
+        .about-card h2 { margin-top: 0; color: var(--primary); font-size: 14px; letter-spacing: 4px; }
+        .about-card p { font-size: 16px; line-height: 1.7; color: #ccc; margin: 0; }
+
+        /* GRID DE PROYECTOS */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; justify-items: center; }
+        .card { background: var(--card); border-radius: 30px; overflow: hidden; border: 1px solid #1a1a1a; transition: 0.4s; animation: floating 4s ease-in-out infinite; width: 100%; display: flex; flex-direction: column; }
+        .card.center-bottom { grid-column: 1 / span 2; max-width: 500px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .card.center-bottom { grid-column: 1; } }
         
-        .card { 
-            background: var(--card); border-radius: 30px; overflow: hidden; border: 1px solid #1a1a1a; 
-            transition: 0.4s; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            animation: floating 4s ease-in-out infinite;
-            max-width: 450px; width: 100%; display: flex; flex-direction: column;
-        }
-
-        .card.center-bottom { grid-column: 1 / span 2; }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .card.center-bottom { grid-column: 1; }
-        }
-
-        .card:hover { border-color: var(--primary); animation-play-state: paused; }
-        
-        .img-area { height: 220px; overflow: hidden; border-bottom: 1px solid #222; }
+        .card:hover { border-color: var(--primary); animation-play-state: paused; box-shadow: 0 0 30px rgba(43, 101, 217, 0.2); }
+        .img-area { height: 230px; overflow: hidden; border-bottom: 1px solid #222; }
         .img-area img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .btn-exe { background: transparent; border: 1px solid var(--primary); color: white; padding: 15px; border-radius: 18px; font-weight: 800; text-decoration: none; display: block; text-align: center; margin-top: auto; transition: 0.3s; font-size: 13px; letter-spacing: 1px; }
+        .btn-exe:hover { background: var(--primary); }
 
-        .btn-exe {
-            background: transparent; border: 1px solid var(--primary); color: white;
-            padding: 14px; border-radius: 15px; font-weight: 800; text-decoration: none;
-            display: block; text-align: center; margin-top: auto; transition: 0.3s;
-        }
-        .btn-exe:hover { background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+        /* SECCIÓN DE CONTACTO */
+        .contact-section { text-align: center; margin: 80px 0; background: radial-gradient(circle at center, #111, #050505); padding: 50px; border-radius: 40px; border: 1px solid #222; }
+        .discord-tag { font-family: 'Space Grotesk', monospace; font-size: 26px; color: var(--accent); display: block; margin-top: 20px; text-shadow: 0 0 20px rgba(0, 242, 255, 0.4); }
 
-        /* MÉTRICAS ARREGLADAS */
-        .skill-container { 
-            margin: 60px 0; background: var(--card); padding: 35px; border-radius: 25px; 
-            border: 1px solid #222; backdrop-filter: blur(10px);
-        }
-        .metric-item { margin-bottom: 25px; }
-        .metric-label { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
-        .skill-bar { height: 10px; background: #111; border-radius: 5px; overflow: hidden; }
-        .skill-per { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0; transition: 2s cubic-bezier(0.1, 0, 0, 1); }
+        /* MÉTRICAS */
+        .metrics-box { background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid #1a1a1a; margin-bottom: 50px; }
+        .metric-item { margin-bottom: 30px; }
+        .metric-info { display: flex; justify-content: space-between; font-weight: 700; font-size: 13px; margin-bottom: 12px; letter-spacing: 1px; }
+        .bar-bg { height: 8px; background: #111; border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0; transition: 2.5s cubic-bezier(0.1, 0, 0, 1); }
 
-        .terminal {
-            background: rgba(2, 2, 2, 0.9); border-left: 4px solid var(--primary);
-            padding: 20px; font-family: 'Space Grotesk', monospace; margin: 40px 0; font-size: 13px;
-        }
+        footer { text-align: center; padding-bottom: 40px; color: #333; font-size: 10px; letter-spacing: 3px; font-weight: 700; }
     </style>
 </head>
 <body>
 
     <div class="video-background">
-        <iframe id="youtube-player"
-            src="https://www.youtube.com/embed/74rohQ60hbk?autoplay=1&mute=1&loop=1&playlist=74rohQ60hbk&controls=0&disablekb=1&fs=0&modestbranding=1&iv_load_policy=3&rel=0"
-            frameborder="0" allow="autoplay; encrypted-media">
-        </iframe>
+        <iframe id="youtube-player" src="https://www.youtube.com/embed/74rohQ60hbk?autoplay=1&mute=1&loop=1&playlist=74rohQ60hbk&controls=0&disablekb=1&fs=0&modestbranding=1&iv_load_policy=3&rel=0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
     </div>
-
     <div class="overlay-profundidad"></div>
 
     <div class="container">
-        <header style="padding: 50px 0; text-align: center;">
-            <p style="letter-spacing: 10px; color: var(--primary); font-weight: 900; font-size: 10px;">ESTADO: DESPLIEGUE_FINAL</p>
+        <img src="Screenshot_20260211_124752_Gallery.jpg" alt="Logo Cliente" class="client-logo">
+
+        <header style="padding: 40px 0; text-align: center;">
+            <p style="letter-spacing: 12px; color: var(--primary); font-weight: 900; font-size: 10px; margin-bottom: 10px;">PRO-DEVELOPER // V4.0</p>
             <h1 class="glitch">AVE_ONE</h1>
-            <p style="color: #bbb; font-size: 17px;">Ingeniería de software para <span style="color: var(--accent);">Roblox/Luau</span>.</p>
         </header>
 
+        <section class="about-card">
+            <h2>> ABOUT_ME</h2>
+            <p>Especialista en arquitectura escalable y sistemas robustos mediante **Programación Orientada a Objetos (POO)** en Luau. Me enfoco en crear sistemas de alta fidelidad, optimización de servidores y mecánicas de juego que escalan a millones de usuarios reales.</p>
+        </section>
+
         <div class="grid">
-            <div class="card">
+            <div class="card" style="animation-delay: 0s;">
                 <div class="img-area"><img src="IMG-20260209-WA0004(1).jpg" alt="Roba un Reggaetonero"></div>
-                <div class="content" style="padding: 25px; display: flex; flex-direction: column; flex-grow: 1;">
-                    <h3 style="margin:0; font-size: 22px;">Roba un Reggaetonero</h3>
-                    <p style="color: #777; font-size: 13px;">Interpolación de red y persistencia masiva.</p>
+                <div class="content" style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin:0; font-size: 20px;">Roba un Reggaetonero</h3>
+                    <p style="color: #666; font-size: 13px; margin: 10px 0 20px;">Sistemas de economía y persistencia masiva.</p>
                     <a href="https://www.roblox.com/games/139814980148578/" class="btn-exe">VER_SISTEMA</a>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="animation-delay: 0.5s;">
                 <div class="img-area"><img src="IMG-20260209-WA0004.jpg" alt="Falling Guys"></div>
-                <div class="content" style="padding: 25px; display: flex; flex-direction: column; flex-grow: 1;">
-                    <h3 style="margin:0; font-size: 22px;">Falling Guys</h3>
-                    <p style="color: #777; font-size: 13px;">Optimización de red y sincronización de físicas.</p>
+                <div class="content" style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin:0; font-size: 20px;">Falling Guys</h3>
+                    <p style="color: #666; font-size: 13px; margin: 10px 0 20px;">Optimización de red y sincronización de físicas.</p>
                     <a href="https://www.roblox.com/games/13985579672/" class="btn-exe">VER_SISTEMA</a>
                 </div>
             </div>
 
-            <div class="card center-bottom">
+            <div class="card center-bottom" style="animation-delay: 1s;">
                 <div class="img-area"><img src="IMG-20260209-WA0004(3).jpg" alt="MexicanRot"></div>
-                <div class="content" style="padding: 25px; display: flex; flex-direction: column; flex-grow: 1;">
-                    <h3 style="margin:0; font-size: 22px;">MexicanRot</h3>
-                    <p style="color: #777; font-size: 13px;">Sistema técnico avanzado basado en animación cinemática.</p>
+                <div class="content" style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin:0; font-size: 20px;">MexicanRot</h3>
+                    <p style="color: #666; font-size: 13px; margin: 10px 0 20px;">Sistema cinemático avanzado de alto rendimiento.</p>
                     <a href="https://www.roblox.com/games/71955931045837/Roba-un-MexicanRot" class="btn-exe">VER_SISTEMA</a>
                 </div>
             </div>
         </div>
 
-        <div class="skill-container">
-            <h2 style="margin:0 0 30px 0; text-transform: uppercase; font-size: 20px; letter-spacing: 2px;">Métricas_de_Rendimiento</h2>
-            
+        <section class="contact-section">
+            <h2 style="margin:0; font-size: 24px; text-transform: uppercase;">¿Tienes un proyecto en mente?</h2>
+            <p style="color: #666; margin-top: 10px;">Contacto directo para arquitecturas de alta complejidad.</p>
+            <span class="discord-tag">Discord: roblox_scripter</span>
+        </section>
+
+        <div class="metrics-box">
+            <h2 style="margin:0 0 35px 0; font-size: 18px; text-transform: uppercase; letter-spacing: 2px;">Métricas_de_Ingeniería</h2>
             <div class="metric-item">
-                <div class="metric-label"><span>OPTIMIZACIÓN BACKEND</span><span>98%</span></div>
-                <div class="skill-bar"><div class="skill-per" data-width="98%"></div></div>
+                <div class="metric-info"><span>BACKEND OPTIMIZATION</span><span>98%</span></div>
+                <div class="bar-bg"><div class="bar-fill" data-width="98%"></div></div>
             </div>
-            
             <div class="metric-item">
-                <div class="metric-label"><span>PROGRAMACIÓN LUAU</span><span>95%</span></div>
-                <div class="skill-bar"><div class="skill-per" data-width="95%"></div></div>
+                <div class="metric-info"><span>LUAU SCRIPTING (POO)</span><span>95%</span></div>
+                <div class="bar-bg"><div class="bar-fill" data-width="95%"></div></div>
             </div>
         </div>
 
-        <div class="terminal">
-            <code style="color: #00ff00;">> PROYECTOS VINCULADOS: 3</code><br>
-            <code style="color: var(--accent);">> Estatus: Conexiones de red establecidas.</code>
-        </div>
+        <footer>STRICTLY CONFIDENTIAL // AVE_ONE PORTFOLIO © 2026</footer>
     </div>
 
     <script>
-        const skills = document.querySelectorAll('.skill-per');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     entry.target.style.width = entry.target.getAttribute('data-width');
                 }
             });
-        }, { threshold: 0.2 });
-        skills.forEach(s => observer.observe(s));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.bar-fill').forEach(b => observer.observe(b));
     </script>
 </body>
 </html>
+
